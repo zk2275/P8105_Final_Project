@@ -23,12 +23,17 @@ this rich dataset to gain insights into factors influencing survival
 outcomes in AIDS patients and to evaluate the efficacy of different
 treatment modalities.
 
+Additionally, we think this project will allow us to combine skills
+learned in this class with skills from all our other classes, especially
+Biostatistical Methods, Principals of Epidemiology, and Survival
+Analysis.
+
 ## Intended Final Products
 
-Introduction of the data set and the visualization will be presented.
-Then, we create a website containing the interacive graphics with
-life-tables. The survival analysis and other analyses from epidimology
-and biostatistical methods will be established.
+We intend to provide a report including an introduction to the data and
+the project, visualizations of disease progression over time, and an
+analysis of survival across treatment methods. Then, we will create a
+website containing interactive graphics and life-tables.
 
 ## Anticipated Data Sources
 
@@ -52,18 +57,18 @@ summaries and visualization. Besides, we will generally use R in the
 research, and most of the work may be uploaded to Github. There are
 various methods for handling right-censored and left-truncated survival
 data with covariates, which are variables that may affect the survival
-time or the risk of the event. Therefore, Multiple methods will be
+time or the risk of the event. Therefore, multiple methods will be
 applied to our research.
 
 ## Planned Timeline
 
-|          Date          |              Descriptions               |
-|:----------------------:|:---------------------------------------:|
-|       11/09/2023       |          Complete the proposal          |
-| 11/10/2023- 11/19/2023 | Data collection, cleaning, and analysis |
-| 11/20/2023- 12/02/2023 |     Data analysis and some insights     |
-| 12/03/2023- 12/09/2023 |  Modify code, website and final output  |
-|       12/10/2023       |                 Submit                  |
+|          Date          |                    Descriptions                     |
+|:----------------------:|:---------------------------------------------------:|
+|       11/11/2023       |                Complete the proposal                |
+| 11/12/2023- 11/19/2023 | Data collection, cleaning, and exploratory analysis |
+| 11/20/2023- 12/02/2023 |            Data analysis, create report             |
+| 12/03/2023- 12/09/2023 |       Create website and interactive graphics       |
+|       12/10/2023       |                       Submit                        |
 
 # Reference
 
