@@ -31,7 +31,7 @@ opts_chunk$set(echo      = TRUE,
 
 # Model selection with tests
 
-```{r import data, echo = FALSE, cache = FALSE, message = FALSE}
+```{r import data, echo = FALSE, cache = FALSE, message = FALSE,comment=NA}
 aids<-read_csv("aids.csv")
 n <- nrow(aids)
 data<- aids |>
@@ -127,15 +127,16 @@ caption = "Regresion Coefficients Estimates of the Cox Model with Time Interacti
 From the regression summary above, we can see that except `cd820:log(time)`, all the selected variable has a significant effect and interaction with time.
 
 ```{r}
+aids_fit<-coxph(Surv(time, cid) ~ ., data_fit)
 # residual
-ggcoxzph(cox.zph(aids_interaction_fit), var = c("cd420"), df = 2, nsmo = 1000)
+ggcoxzph(cox.zph(aids_fit), var = c("cd420"), df = 2, nsmo = 1000)
 ```
 
 From the above plot and the Schoenfeld individual test p-value, we can see that the residual plot has a non-zero slope regression line, and the p-value of the tests is less than 0.05, which means the covariate cd420 doesn't meet the PH assumption.
 
 ```{r}
 # ggsave("ph_checking_4.png", width = 6, height = 4)
-ggcoxzph(cox.zph(aids_interaction_fit), var = c("cd820"), df = 2, nsmo = 1000)
+ggcoxzph(cox.zph(aids_fit), var = c("cd820"), df = 2, nsmo = 1000)
 ```
 
 However, the covariate cd820 is different. 
@@ -191,7 +192,14 @@ library(eha)
 #backward selection, significance level = 0.05
 fit_ph1 = eha::phreg(Surv(time, cid==1) ~ .,
                 data = data_fit, dist = "weibull")
-summary(fit_ph1)
+summary(fit_ph1)|>
+  kable("latex", 
+        digits = 4, 
+        escape = F, 
+        booktabs = T, 
+caption = "Weibull (Parametric) PH Model Fitting") |>
+  kable_styling(position = "center", 
+                latex_options = "hold_position")
 # it can be our final model
 
 
@@ -199,6 +207,8 @@ summary(fit_ph1)
 fit_cox =eha::coxreg(Surv(time, cid==1) ~ ., data = data_fit)
 eha::check.dist(fit_ph1, fit_cox)
 ```
+
+![](Weibull_Result.png)
 
 The fit of the Weibull baseline function is very close to the non-parametric one.
 

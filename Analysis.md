@@ -612,8 +612,9 @@ From the regression summary above, we can see that except
 and interaction with time.
 
 ``` r
+aids_fit<-coxph(Surv(time, cid) ~ ., data_fit)
 # residual
-ggcoxzph(cox.zph(aids_interaction_fit), var = c("cd420"), df = 2, nsmo = 1000)
+ggcoxzph(cox.zph(aids_fit), var = c("cd420"), df = 2, nsmo = 1000)
 ```
 
 <img src="Analysis_files/figure-gfm/unnamed-chunk-4-1.png" style="display: block; margin: auto;" />
@@ -625,7 +626,7 @@ doesn’t meet the PH assumption.
 
 ``` r
 # ggsave("ph_checking_4.png", width = 6, height = 4)
-ggcoxzph(cox.zph(aids_interaction_fit), var = c("cd820"), df = 2, nsmo = 1000)
+ggcoxzph(cox.zph(aids_fit), var = c("cd820"), df = 2, nsmo = 1000)
 ```
 
 <img src="Analysis_files/figure-gfm/unnamed-chunk-5-1.png" style="display: block; margin: auto;" />
@@ -684,7 +685,14 @@ library(eha)
 #backward selection, significance level = 0.05
 fit_ph1 = eha::phreg(Surv(time, cid==1) ~ .,
                 data = data_fit, dist = "weibull")
-summary(fit_ph1)
+summary(fit_ph1)|>
+  kable("latex", 
+        digits = 4, 
+        escape = F, 
+        booktabs = T, 
+caption = "Weibull (Parametric) PH Model Fitting") |>
+  kable_styling(position = "center", 
+                latex_options = "hold_position")
 # it can be our final model
 
 
@@ -692,6 +700,8 @@ summary(fit_ph1)
 fit_cox =eha::coxreg(Surv(time, cid==1) ~ ., data = data_fit)
 eha::check.dist(fit_ph1, fit_cox)
 ```
+
+![](Weibull_Result.png)
 
 The fit of the Weibull baseline function is very close to the
 non-parametric one.
