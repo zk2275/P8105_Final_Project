@@ -37,7 +37,7 @@ data<- aids |>
   janitor::clean_names()|>
   dplyr::select(time, cid, trt, everything())
 fit1<-coxph(Surv(time, cid) ~ . , data = data)
-stepwise <- stepAIC(fit1, direction = "backward",k = log(n)) # BIC
+stepwise <- stepAIC(fit1, direction = "backward",k = log(n),trace = F) # BIC
 
 ```
 
