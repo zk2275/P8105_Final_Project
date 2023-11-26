@@ -2,10 +2,8 @@
 title: "Analysis"
 author: "Zhuodiao Kuang"
 date: "`r Sys.Date()`"
-output:
-  html_document: default
-  word_document: default
-  pdf_document: default
+output: github_document
+always_allow_html: true
 ---
 
 ```{r setup, echo = FALSE, cache = FALSE, message = FALSE}
@@ -52,12 +50,7 @@ broom::tidy(stepwise) |>kbl()
 
 Our goal is to investigate the difference between two groups of different treatments(ZDV), therefore we pre-specified to stratify by treatment in the model.
 
-# Variable stratification
 
-
-```{r}
-
-```
 
 # Graphical Methods
 
