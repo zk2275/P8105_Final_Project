@@ -31,7 +31,7 @@ opts_chunk$set(echo      = TRUE,
 # Model selection with tests
 
 ```{r import data, echo = FALSE, cache = FALSE, message = FALSE,comment=NA}
-aids<-read_csv("aids.csv")
+aids<-read_csv(here::here("Data/aids.csv"))
 n <- nrow(aids)
 data<- aids |>
   janitor::clean_names()|>
